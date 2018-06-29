@@ -1,0 +1,43 @@
+- name: Download repo debian
+  get_url:
+   url: https://apt.puppetlabs.com/puppet5-release-xenial.deb
+   dest: /tmp/puppet.deb
+  when: ansible_os_family == "Debian"
+
+- name: instalar o repo
+  apt:
+   deb: /tmp/puppet.deb
+  when: ansible_os_family == "Debian"
+
+
+- name: Downloaf repo centos
+  get_url:
+   url: https://yum.puppet.com/puppet5/puppet5-release-el-5.noarch.rpm
+   dest: /tmp/puppet.rpm
+  when: ansible_os_family == "RedHat"
+
+- name: instalar repo centos
+  yum: 
+   name: /tmp/puppet.rpm
+  when: ansible_os_family == "RedHat"
+
+
+- name: Instalar o agent debian
+  apt:
+   name: "{{ item }}"
+   state: present
+   update_cache: yes
+  with_items:
+   - puppet-agent
+  when: ansible_os_family == "Debian"
+
+- name: Instalando o agent CentOS
+  yum:
+   name: "{{ item }}"
+   state: present
+   update_cache: yes
+  with_items:
+   - puppet-agent
+  when: ansible_os_family == "RedHat" 
+
+

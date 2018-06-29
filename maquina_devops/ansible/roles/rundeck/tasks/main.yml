@@ -1,0 +1,10 @@
+---
+# tasks file for rundeck
+
+- name: Install rundeck
+  hosts: automation
+  tasks:
+   - include: pre_configure.yml
+   - include: install.yml
+
+# tasks file for rundeck

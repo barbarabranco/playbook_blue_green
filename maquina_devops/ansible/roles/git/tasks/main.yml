@@ -1,0 +1,11 @@
+---
+# tasks file for web
+
+- name: Install gitlab
+  hosts: devops
+  tasks:
+   - include: deb.yml
+   - include: install.yml
+
+
+# tasks file for git

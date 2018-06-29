@@ -1,0 +1,26 @@
+- name: Install package
+  yum:
+   name: "{{ item }}"
+   state: present
+  with_items:
+   - httpd
+  when: ansible_os_family == "RedHat"
+
+- name: Install package
+  service:
+   name: "{{ item }}"
+   state: started
+  with_items:
+   - httpd
+  when: ansible_os_family == "RedHat"
+
+- name: Enviar index
+  copy:
+   src: ../files/index.html
+   dest: /var/www/html/index.html
+
+- name: parando o firewalld
+  service:
+   name: firewalld
+   state: stopped
+  when: ansible_os_family == "RedHad"

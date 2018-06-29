@@ -1,0 +1,13 @@
+- name: Install gitlab
+  yum:
+   name: rundeck
+   update_cache: yes
+   state: present
+
+- name: start rundeck
+  service:
+   name: rundeckd
+   state: started
+
+   
+
