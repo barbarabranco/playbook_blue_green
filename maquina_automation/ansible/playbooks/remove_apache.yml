@@ -1,0 +1,17 @@
+---
+
+- name: Apagando apache
+  hosts: docker
+  remote_user: root
+  tasks:
+
+   - name: parando apache
+     service:
+      name: apache2
+      state: stopped
+
+
+   - name: Removendo o apache
+     apt: 
+      name: apache2
+      state: absent

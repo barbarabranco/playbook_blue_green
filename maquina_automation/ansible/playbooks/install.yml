@@ -1,0 +1,7 @@
+---
+
+- name: Instalando os packages
+  hosts: docker
+  remote_users: root
+  tasks:
+   name:

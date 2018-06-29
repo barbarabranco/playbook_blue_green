@@ -1,0 +1,35 @@
+---
+- name: Instalacao de pacotes centos
+  hosts: docker
+  remote_user: root
+  tasks:
+   - name:
+     apt:
+      name: "{{ item }}"
+      state: present
+     with_items:
+       - python-pip
+    
+
+   - name: Intalando docker-py
+     pip: 
+      name: docker-py
+      state: present
+    
+    
+   - name: Instalando o docker
+     docker_container: 
+      name: green
+      image: httpd
+      state: started
+      command: /bin/bash
+
+   - name: Instalando o docker
+     docker_container: 
+      name: blue
+      image: httpd
+      state: started
+      command: /bin/bash
+
+
+
